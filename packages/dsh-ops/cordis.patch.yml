@@ -1,0 +1,18 @@
+# dsh-ops bundle patch: inserts the ops workspace row into the web profile
+# roster. Applied as a profile bundle layer (the `dsh.bundle.patch` manifest
+# field) over dsh-base; activate with
+# `dsh plugin --profile <name> add link:<repo>/packages/dsh-ops`.
+#
+# The row is a bare plugin by package name: the node half (exports ".") holds
+# the tree/task ledger, the runner and the /api/dsh-ops routes, and the
+# `dsh.client` declaration in package.json makes the browser half
+# (exports "./client") load in the web GUI.
+- insert:
+    - id: ops
+      name: '@linxin666/dsh-ops'
+
+# The product brand is "AI-TEST 管理台": the ops client registers the sidebar
+# brand slots itself (src/client/brand.tsx), so the official DeepSeek brand
+# plugin (wordmark, fish logo and whale home art) is switched off.
+- id: ui-brand-official
+  disabled: true
